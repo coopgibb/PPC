@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier Property Care | Bespoke Property Management in Vail, CO</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap');
+
+        :root {
+            --dark-navy: #1D2D44;
+            --mid-gray: #3E5C76;
+            --light-beige: #F0EAD6;
+            --white: #FFFFFF;
+            --gold-accent: #B8860B;
+            --scroll-behavior: smooth;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: var(--scroll-behavior);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
+            color: var(--dark-navy);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        #main-nav {
+            background: transparent;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+            padding: 1.5rem 0;
+            transition: background 0.4s ease-in-out, padding 0.4s ease-in-out;
+        }
+
+        #main-nav.scrolled {
+            background: rgba(29, 45, 68, 0.95);
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #main-nav .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: auto;
+            padding: 0 2rem;
+        }
+
+        #main-nav .logo {
+            font-family: 'Playfair Display', serif;
+            color: var(--white);
+            font-size: 1.8rem;
+            font-weight: 700;
+            z-index: 10;
+            white-space: nowrap; /* Ensures "Premier Property" stays on one line */
+        }
+
+        #main-nav .logo .care-span {
+            color: var(--light-beige);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 1rem;
+            display: block;
+            letter-spacing: 2px;
+            margin-top: -5px;
+            transition: color 0.4s ease-in-out;
+        }
+        
+        #main-nav.scrolled .logo .care-span {
+            color: var(--gold-accent);
+        }
+
+        #main-nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        #main-nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.75rem 0.8rem;
+            margin: 0 0.4rem;
+            font-weight: 400;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        #main-nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 1px;
+            background: var(--gold-accent);
+            transition: width 0.3s ease;
+        }
+
+        #main-nav ul li a:hover {
+            color: var(--gold-accent);
+        }
+
+        #main-nav ul li a:hover::after {
+            width: 60%;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Hero Section */
+        #hero {
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        #hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #hero p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--gold-accent);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--gold-accent);
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease, color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--gold-accent);
+        }
+
+        /* General Section Styling */
+        section {
+            padding: 7rem 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--dark-navy);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem auto;
+            color: var(--mid-gray);
+            font-size: 1.1rem;
+        }
+
+        /* About Section */
+        #about {
+            background: var(--light-beige);
+        }
+
+        #about .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        #about .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--dark-navy);
+            margin-bottom: 1.5rem;
+        }
+
+        #about .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        #about .about-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            box-shadow: 10px 10px 0px var(--gold-accent);
+        }
+        
+        .owner-profile {
+            margin-top: 7rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .owner-profile-image img {
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 0 0 10px var(--white), 0 0 0 12px var(--gold-accent);
+        }
+
+        /* Services Section */
+        #services {
+            background: var(--white);
+        }
+
+        .services-container {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+
+        .tabs-nav {
+            flex: 1;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tabs-nav li {
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1.1rem;
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+            color: var(--mid-gray);
+        }
+
+        .tabs-nav li:hover {
+            background: var(--light-beige);
+            color: var(--dark-navy);
+        }
+
+        .tabs-nav li.active {
+            border-left-color: var(--gold-accent);
+            background: var(--light-beige);
+            color: var(--dark-navy);
+        }
+
+        .tabs-content {
+            flex: 2.5;
+            background: var(--light-beige);
+            padding: 2.5rem;
+            padding-bottom: 3rem;
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-pane-text {
+            grid-row: 1;
+        }
+
+        .tab-pane-image {
+            grid-row: 2;
+        }
+        
+        .tab-pane h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--dark-navy);
+            margin-bottom: 1.5rem;
+        }
+        
+        .tab-pane-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .tab-pane p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .tab-pane ul {
+            list-style-position: inside;
+            padding-left: 0;
+        }
+        
+        .tab-pane ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .services-cta-container {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(29, 45, 68, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Testimonials Section */
+        #testimonials {
+            background-color: var(--dark-navy);
+            overflow: hidden;
+        }
+        
+        #testimonials .section-title, #testimonials .section-subtitle {
+            color: var(--white);
+        }
+        
+        .testimonial-slider-container {
+            position: relative;
+        }
+
+        .testimonial-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .testimonial-card {
+            background: var(--white);
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            width: calc(100% / 3 - 1.5rem);
+            margin: 0 0.75rem;
+        }
+        
+        .testimonial-card p {
+            font-style: italic;
+            color: var(--mid-gray);
+            flex-grow: 1;
+        }
+        
+        .testimonial-card .author {
+            font-weight: 700;
+            margin-top: 1.5rem;
+            color: var(--dark-navy);
+            text-align: right;
+        }
+        
+        .testimonial-card .author::before {
+            content: '— ';
+        }
+
+        .testimonial-nav {
+            position: absolute;
+            top: 50%;
+            left: -2rem;
+            right: -2rem;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .testimonial-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--white);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .testimonial-nav button:hover {
+            background: var(--gold-accent);
+            border-color: var(--gold-accent);
+        }
+
+
+        /* Contact Section */
+        #contact {
+            background: var(--light-beige);
+        }
+
+        #contact .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            background: var(--white);
+            padding: 4rem;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--light-beige);
+            border: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--gold-accent);
+        }
+
+        .contact-form .btn {
+            width: 100%;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-navy);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        footer .logo {
+            font-family: 'Playfair Display', serif;
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        footer .logo span {
+            color: var(--gold-accent);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            #hero h1 {
+                font-size: 3rem;
+            }
+
+            #hero p {
+                font-size: 1.2rem;
+            }
+
+            #about .about-content,
+            .owner-profile {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            #about .about-image {
+                margin-top: 3rem;
+            }
+            
+            .owner-profile-image {
+                grid-row: 1;
+                margin-bottom: 2rem;
+            }
+            
+            .services-container {
+                flex-direction: column;
+            }
+            
+            .tabs-nav {
+                display: flex;
+                flex-wrap: wrap;
+                border-bottom: 1px solid #ddd;
+                margin-bottom: 2rem;
+                width: 100%;
+            }
+            
+            .tabs-nav li {
+                border-left: none;
+                border-bottom: 3px solid transparent;
+                text-align: center;
+                flex-grow: 1;
+            }
+            
+            .tabs-nav li.active {
+                border-left-color: transparent;
+                border-bottom-color: var(--gold-accent);
+            }
+            
+            .testimonial-card {
+                width: 100%;
+                margin: 0;
+            }
+
+            #contact .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            #main-nav ul {
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--dark-navy);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #main-nav ul.active {
+                display: flex;
+            }
+
+            #main-nav ul li {
+                margin: 1.5rem 0;
+            }
+
+            #main-nav ul li a {
+                font-size: 1.5rem;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: relative;
+                z-index: 10;
+                cursor: pointer;
+            }
+
+            .menu-toggle .bar {
+                display: block;
+                width: 28px;
+                height: 3px;
+                background: var(--white);
+                margin: 5px auto;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .menu-toggle.is-active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.is-active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .menu-toggle.is-active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="main-nav">
+        <div class="nav-container">
+            <div class="logo">Premier Property Care
+                <span class="care-span">Luxery Property Management ┃ Vail Valley</span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <header id="hero"
+        style="background-image: linear-gradient(rgba(29, 45, 68, 0.6), rgba(29, 45, 68, 0.2)), url('https://i.imgur.com/ZGZ5CWk.jpeg');">
+        <h1>The Stewardship of Your Vail Home</h1>
+        <p>For over 30 years, Premier Property Care has helped homeowners protect and maintain their mountain retreats--so you can relax, knowing everything is taken care of.</p>
+        <a href="#contact" class="btn">Request a Consultation</a>
+    </header>
+
+    <main>
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">Local Expertise, Unwavering Trust</h2>
+                <p class="section-subtitle">We are not just managers; we are caretakers. Our foundation is built on a
+                    deep understanding of Vail's unique environment and a commitment to preserving the value and beauty
+                    of your property.</p>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Your Home, Our Priority.</h3>
+                        <p>Owning a luxury home in Vail should be a source of joy, not a burden. Premier Property Care
+                            was founded by long-time locals who believe in proactive, transparent, and personalized
+                            service. We treat every home as if it were our own, applying meticulous attention to detail
+                            and leveraging our network of elite local craftsmen and vendors.</p>
+                        <p>Our philosophy is simple: provide a level of service so seamless and reliable that you never
+                            have to worry about your property, whether you're enjoying the slopes or are thousands of
+                            miles away.</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://i.imgur.com/pt9cJPd.jpeg"
+                            alt="Modern mountain home living room with fireplace and view">
+                    </div>
+                </div>
+
+                <div class="owner-profile">
+                    <div class="owner-profile-text">
+                        <h3>Meet the Founder, Nancy Smith</h3>
+                        <p>Nancy Smith has called the Vail Valley home for decades and still plays an active role in everything we do at Premier Property Care. Her experience, local know-how, and strong relationships are the backbone of our company. With Nancy involved every step of the way, you can count on your home getting the personal attention and care it deserves.</p>
+                    </div>
+                    <div class="owner-profile-image">
+                        <img src="https://i.imgur.com/8b4Yq3p.jpeg" alt="Headshot of Nancy Smith, Founder">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <h2 class="section-title">A Foundation of Service</h2>
+                <p class="section-subtitle">Our comprehensive suite of services is designed to provide complete peace of mind, covering every aspect of luxury homeownership in the mountains.</p>
+                <div class="services-container">
+                    <ul class="tabs-nav">
+                        <li class="active" data-tab="1">Maintenance Coordination</li>
+                        <li data-tab="2">Five-Star Housekeeping</li>
+                        <li data-tab="3">Contractor Coordination</li>
+                        <li data-tab="4">Personalized Guest Services</li>
+                        <li data-tab="5">Transparent Owner Reporting</li>
+                    </ul>
+                    <div class="tabs-content">
+                        <div class="tab-pane active" id="tab-1">
+                            <div class="tab-pane-text">
+                                <h3>Proactive Maintenance Coordination</h3>
+                                <p>We believe in preventing issues before they arise. Our proactive approach includes regular, detailed inspections and adherence to a customized preventative maintenance schedule for your property. This ensures your home's vital systems are always operating at peak efficiency, protecting your investment for the long term.</p>
+                                <ul>
+                                    <li>Customized property maintenance plans.</li>
+                                    <li>24/7 emergency response and support.</li>
+                                    <li>Seasonal preparation and winterization services.</li>
+                                    <li>Management of hot tub, pool, and landscape services.</li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane-image">
+                                <img src="https://i.imgur.com/ijeh6s4.jpeg" alt="Maintenance Coordination">
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab-2">
+                             <div class="tab-pane-text">
+                                <h3>Five-Star Housekeeping</h3>
+                                <p>Experience a level of clean that rivals the world's finest hotels. Our professional housekeeping staff is meticulously trained to prepare your home to an immaculate standard, ensuring it is always ready for your arrival. We use premium, eco-friendly products and a detailed checklist customized to your preferences.</p>
+                                 <ul>
+                                    <li>Flexible scheduling to suit your needs.</li>
+                                    <li>Deep cleaning and post-visit turnover services.</li>
+                                    <li>Linen and laundry service management.</li>
+                                    <li>Attention to the smallest details for a perfect welcome.</li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane-image">
+                                <img src="https://i.imgur.com/mhYywNZ.jpeg" alt="Five-Star Housekeeping">
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab-3">
+                            <div class="tab-pane-text">
+                                <h3>Trusted Contractor Coordination</h3>
+                                <p>Leverage our exclusive network of the Vail Valley's most respected and reliable contractors. From master plumbers to artisan carpenters, we manage all third-party services, ensuring every job is completed to the highest standard, on time, and on budget. We handle the calls, scheduling, and oversight, so you don't have to.</p>
+                                 <ul>
+                                    <li>Access to our vetted network of elite local professionals.</li>
+                                    <li>Project management for repairs and renovations.</li>
+                                    <li>Coordination of landscaping, snow removal, and more.</li>
+                                    <li>Complete oversight and quality assurance.</li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane-image">
+                                <img src="https://i.imgur.com/lbaJZbF.jpeg" alt="Trusted Contractor Coordination">
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab-4">
+                            <div class="tab-pane-text">
+                                <h3>Personalized Guest & Concierge Services</h3>
+                                <p>Elevate the mountain experience for your family and guests. Our concierge services are designed to handle every request, ensuring a seamless and memorable stay. From transportation to dinner reservations, we are your personal connection to the best of Vail.</p>
+                                 <ul>
+                                    <li>Pre-arrival grocery and beverage stocking.</li>
+                                    <li>Private chef and catering arrangements.</li>
+                                    <li>Lift tickets, ski lessons, and activity booking.</li>
+                                    <li>Airport transportation and private vehicle coordination.</li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane-image">
+                                <img src="https://i.imgur.com/lOcqDEh.jpeg" alt="Personalized Guest Services">
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab-5">
+                            <div class="tab-pane-text">
+                                <h3>Transparent Owner Reporting</h3>
+                                <p>Trust is built on transparency. Through our secure online owner's portal, you have 24/7 access to detailed financial statements, maintenance logs, and inspection reports. We provide clear, concise communication, so you are always fully informed about the status of your property.</p>
+                                 <ul>
+                                    <li>Secure online portal with 24/7 access.</li>
+                                    <li>Detailed monthly financial statements.</li>
+                                    <li>Digital copies of all vendor invoices.</li>
+                                    <li>Regular property inspection reports with photos.</li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane-image">
+                                <img src="https://i.imgur.com/GmVTZ1R.jpeg" alt="Transparent Owner Reporting">
+                            </div>
+                        </div>
+                        <div class="services-cta-container">
+                            <a href="#contact" class="btn">Consult With Our Team</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="testimonials">
+            <div class="container">
+                <h2 class="section-title">Peace of Mind, Delivered</h2>
+                <p class="section-subtitle">Our reputation is built on the lasting relationships we have with our clients. Here is what a few of them have to say.</p>
+                <div class="testimonial-slider-container">
+                    <div class="testimonial-slider">
+                        <div class="testimonial-card">
+                            <p>"Entrusting our Vail home to Nancy and her team was the best decision we've made. Their proactive communication and meticulous attention to detail mean we never worry. We arrive to a perfect home, every single time."</p>
+                            <span class="author">The Harrison Family, Denver, CO</span>
+                        </div>
+                        <div class="testimonial-card">
+                            <p>"As an out-of-state owner, Premier Property Care is indispensable. They handle everything from storm prep to coordinating complex repairs with an efficiency and professionalism that is simply unmatched in the Valley."</p>
+                            <span class="author">J. Sterling, New York, NY</span>
+                        </div>
+                        <div class="testimonial-card">
+                            <p>"The concierge service is a game-changer. From lift tickets to a fully-stocked fridge and private chef, they curate a flawless vacation experience for our family and guests. It's true hands-off, luxury ownership."</p>
+                            <span class="author">A. Chen, San Francisco, CA</span>
+                        </div>
+                        <div class="testimonial-card">
+                            <p>"We've worked with other property managers before, and none compare to the level of personal service and trust we have with Premier. They truly care for our home as if it were their own. Their local knowledge is invaluable."</p>
+                            <span class="author">The Miller Group, Houston, TX</span>
+                        </div>
+                        <div class="testimonial-card">
+                            <p>"The financial transparency and detailed reporting give us complete confidence. We always know exactly what's happening with our property, which is incredibly reassuring from half a country away. A first-class operation."</p>
+                            <span class="author">R. & S. Thompson, Chicago, IL</span>
+                        </div>
+                        <div class="testimonial-card">
+                            <p>"I can't say enough about the housekeeping team. The standard is impeccable. It's such a pleasure to arrive after a long journey to a home that is pristine, welcoming, and perfectly prepared for our stay."</p>
+                            <span class="author">Dr. Elizabeth Reed, Boston, MA</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-nav">
+                        <button id="testimonial-prev">&lt;</button>
+                        <button id="testimonial-next">&gt;</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Begin the Conversation</h2>
+                <p class="section-subtitle">Reach out to discover how our tailored approach to property management can
+                    bring you peace of mind and enhance your ownership experience in Vail.</p>
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <h3>Contact Details</h3>
+                        <p>We are available to discuss your property's specific needs. Please call or email us to
+                            schedule a private consultation.</p>
+                        <p><strong>Phone:</strong> (970) 555-1234</p>
+                        <p><strong>Email:</strong> concierge@premierpropertycarevail.com</p>
+                        <p><strong>Office:</strong> Vail, Colorado</p>
+                    </div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" rows="6" placeholder="Tell us about your property and needs..."
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="logo">Premier Property <span>Care</span></div>
+            <p>&copy; 2025 Premier Property Care | Luxury Property Management for Vail, Colorado.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('is-active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Services Tab
+        const tabs = document.querySelectorAll('.tabs-nav li');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+
+                tabs.forEach(item => item.classList.remove('active'));
+                tabPanes.forEach(pane => pane.classList.remove('active'));
+
+                tab.classList.add('active');
+                document.getElementById('tab-' + tabId).classList.add('active');
+            });
+        });
+
+        // Testimonial Slider
+        const testimonialSlider = document.querySelector('.testimonial-slider');
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        const prevBtn = document.getElementById('testimonial-prev');
+        const nextBtn = document.getElementById('testimonial-next');
+
+        let currentIndex = 0;
+        let itemsPerSlide = window.innerWidth > 992 ? 3 : 1;
+        const totalItems = testimonialCards.length;
+        const totalSlides = Math.ceil(totalItems / itemsPerSlide);
+
+        function updateSlider() {
+            const slideWidth = testimonialSlider.parentElement.offsetWidth;
+            const newTransform = -currentIndex * (slideWidth / itemsPerSlide) * itemsPerSlide;
+            testimonialSlider.style.transform = `translateX(${newTransform}px)`;
+        }
+
+        function updateItemsPerSlide() {
+            itemsPerSlide = window.innerWidth > 992 ? 3 : 1;
+            
+            // Recalculate card widths
+            const gap = 1.5; // in rem
+            const gapPixels = gap * 16;
+            const cardWidth = itemsPerSlide === 1 ? '100%' : `calc(100% / ${itemsPerSlide} - ${gap}rem)`;
+            
+            testimonialCards.forEach(card => {
+                card.style.width = cardWidth;
+            });
+            
+            updateSlider();
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < totalSlides - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0; // Loop back to start
+            }
+            updateSlider();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = totalSlides - 1; // Loop to end
+            }
+            updateSlider();
+        });
+        
+        window.addEventListener('resize', updateItemsPerSlide);
+        
+        // Initial setup
+        updateItemsPerSlide();
+
+
+    </script>
+
+</body>
+
+</html>
